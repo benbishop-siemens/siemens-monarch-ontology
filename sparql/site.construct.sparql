@@ -1,0 +1,87 @@
+PREFIX siemens: <http://energy.siemens/monarch>
+PREFIX spif: <http://spinrdf.org/spif#>
+
+# Example RDF transformation using the custom IRIs and type
+CONSTRUCT {
+	?row a siemens:Asset, siemens:PhysicalAsset, siemens:Plant ;
+		siemens:mosSiteId ?monarchmos_site_id ;
+		siemens:fdmSiteId ?monarchfdm_site_id ;
+		siemens:kspSiteId ?monarchksp_site_id ;
+		siemens:owningSystem ?monarchowning_system ;
+		siemens:label ?monarchsite_name ;
+
+		siemens:countryName ?monarchcountry_name ;
+		siemens:countryCode ?monarchcountry_code ;
+  		siemens:region ?Region ;
+    	siemens:address ?addressId ;
+    	siemens:event ?createdId ;
+    	siemens:event ?updatedId ;
+    	siemens:event ?deletedId .
+
+  		?addressId a siemens:Address ;
+    		siemens:street ?monarchstreet ;
+			siemens:streetNumber ?monarchstreet_number ;
+			siemens:city ?monarchcity ;
+			siemens:postalCode ?monarchpostal_code ;
+			siemens:state ?monarchsite_state ;
+  			siemens:geo ?geoId .
+
+        ?geoId a siemens:GeoCoordinates ;
+    		siemens:latitude ?monarchgeo_latitude ;
+    		siemens:longitude ?monarchgeo_longitude ;
+    		siemens:quality ?monarchgeo_quality ;
+			siemens:elevation ?monarchgeo_elevation ;
+			siemens:distanceToShore ?monarchgeo_distance_to_shore ;
+			siemens:distanceToStation ?monarchgeo_distance_to_station .
+
+  		?createdId a siemens:Created, siemens:Event ;
+  			siemens:by ?monarchentry_created_by ;
+			siemens:on ?monarchentry_created_on .
+
+  		?updatedId a siemens:Created, siemens:Event ;
+  			siemens:by ?monarchentry_updated_by ;
+			siemens:on ?monarchentry_updated_on .
+
+  		?deletedId a siemens:Created, siemens:Event ;
+  			siemens:by ?monarchentry_deleted_by ;
+			siemens:on ?monarchentry_deleted_on .
+
+} WHERE {
+	# Triple patterns for accessing each row and the columns in contains
+	# Note that no triples will be generated for NULL values in the table
+	# You should inspect your data in Refine mode and add OPTIONAL accordingly
+    OPTIONAL {
+	?row a siemens:Row ;
+		siemens:mos_site_id ?monarchmos_site_id ;
+		siemens:fdm_site_id ?monarchfdm_site_id ;
+		siemens:ksp_site_id ?monarchksp_site_id ;
+		siemens:owning_system ?monarchowning_system ;
+		siemens:site_name ?monarchsite_name ;
+		siemens:street ?monarchstreet ;
+		siemens:street_number ?monarchstreet_number ;
+		siemens:city ?monarchcity ;
+		siemens:postal_code ?monarchpostal_code ;
+		siemens:site_state ?monarchsite_state ;
+		siemens:geo_latitude ?monarchgeo_latitude ;
+		siemens:geo_longitude ?monarchgeo_longitude ;
+		siemens:geo_quality ?monarchgeo_quality ;
+		siemens:geo_comments ?monarchgeo_comments ;
+		siemens:geo_elevation ?monarchgeo_elevation ;
+		siemens:geo_distance_to_shore ?monarchgeo_distance_to_shore ;
+		siemens:geo_distance_to_station ?monarchgeo_distance_to_station ;
+		siemens:service_region ?monarchservice_region ;
+		siemens:entry_created_by ?monarchentry_created_by ;
+		siemens:entry_created_on ?monarchentry_created_on ;
+		siemens:entry_updated_by ?monarchentry_updated_by ;
+		siemens:entry_updated_on ?monarchentry_updated_on ;
+		siemens:country_id ?monarchcountry_id ;
+		siemens:country_name ?monarchcountry_name ;
+		siemens:country_code ?monarchcountry_code .
+        bind(iri(concat("http://energy.siemens.com/geo#", str(?row) )) as ?geoId)
+  		bind(iri(concat("http://energy.siemens.com/address#", str(?row) )) as ?addressId)
+    	bind(iri(concat("http://energy.siemens.com/Created#", str(?row) )) as ?createdId)
+      	bind(iri(concat("http://energy.siemens.com/Deleted#", str(?row) )) as ?deletedId)
+        bind(iri(concat("http://energy.siemens.com/Updated#", str(?row) )) as ?updatedId)
+        bind(iri(concat("http://energy.siemens.com/#", spif:encodeURL(?monarchcountry_code))) as ?Region)
+  }
+} LIMIT 100
