@@ -1,0 +1,423 @@
+@prefix : <http://energy.siemens/monarch#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://energy.siemens/monarch> .
+
+<http://energy.siemens/monarch> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://energy.siemens/monarch#address
+:address rdf:type owl:ObjectProperty ;
+         rdfs:domain :PhysicalAsset .
+
+
+###  http://energy.siemens/monarch#dutyType
+:dutyType rdf:type owl:ObjectProperty ;
+          rdfs:domain :Unit ;
+          rdfs:range :DutyType .
+
+
+###  http://energy.siemens/monarch#event
+:event rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf owl:topObjectProperty ;
+       rdfs:domain :GeoCoordinates ,
+                   :Plant .
+
+
+###  http://energy.siemens/monarch#geo
+:geo rdf:type owl:ObjectProperty ;
+     rdfs:domain :PostalAddress ;
+     rdfs:range :GeoCoordinates .
+
+
+###  http://energy.siemens/monarch#hasChild
+:hasChild rdf:type owl:ObjectProperty ;
+          owl:inverseOf :hasParent ;
+          rdfs:domain :Asset .
+
+
+###  http://energy.siemens/monarch#hasParent
+:hasParent rdf:type owl:ObjectProperty ;
+           rdfs:domain :Asset .
+
+
+###  http://energy.siemens/monarch#owningSystem
+:owningSystem rdf:type owl:ObjectProperty ;
+              rdfs:domain :Unit ;
+              rdfs:range :OwningSystem .
+
+
+###  http://energy.siemens/monarch#primaryFuel
+:primaryFuel rdf:type owl:ObjectProperty ;
+             rdfs:domain :Unit ;
+             rdfs:range :Fuel .
+
+
+###  http://energy.siemens/monarch#quality
+:quality rdf:type owl:ObjectProperty ;
+         rdfs:domain :GeoCoordinates ;
+         rdfs:range :GeoQuality .
+
+
+###  http://energy.siemens/monarch#region
+:region rdf:type owl:ObjectProperty ;
+        rdfs:domain :Site ;
+        rdfs:range :Region .
+
+
+###  http://energy.siemens/monarch#secondaryFuel
+:secondaryFuel rdf:type owl:ObjectProperty ;
+               rdfs:domain :Equipment ;
+               rdfs:range :Fuel .
+
+
+###  http://energy.siemens/monarch#unitStatus
+:unitStatus rdf:type owl:ObjectProperty ;
+            rdfs:domain :Unit ;
+            rdfs:range :UnitStatus .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://energy.siemens/monarch#by
+:by rdf:type owl:DatatypeProperty ;
+    rdfs:domain :TransactionEvent ;
+    rdfs:range xsd:string .
+
+
+###  http://energy.siemens/monarch#city
+:city rdf:type owl:DatatypeProperty ;
+      rdfs:subPropertyOf owl:topDataProperty ;
+      rdfs:domain :PostalAddress ;
+      rdfs:range xsd:string .
+
+
+###  http://energy.siemens/monarch#comments
+:comments rdf:type owl:DatatypeProperty ;
+          rdfs:domain :TransactionEvent ;
+          rdfs:range xsd:string .
+
+
+###  http://energy.siemens/monarch#commercialDate
+:commercialDate rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf owl:topDataProperty ;
+                rdfs:domain :Unit ;
+                rdfs:range xsd:dateTime .
+
+
+###  http://energy.siemens/monarch#countryCode
+:countryCode rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Country ;
+             rdfs:range xsd:string .
+
+
+###  http://energy.siemens/monarch#countryId
+:countryId rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Site ;
+           rdfs:range xsd:integer .
+
+
+###  http://energy.siemens/monarch#description
+:description rdf:type owl:DatatypeProperty .
+
+
+###  http://energy.siemens/monarch#distanceToShore
+:distanceToShore rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :GeoCoordinates ;
+                 rdfs:range xsd:integer .
+
+
+###  http://energy.siemens/monarch#distanceToStation
+:distanceToStation rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :GeoCoordinates ;
+                   rdfs:range xsd:integer .
+
+
+###  http://energy.siemens/monarch#elevation
+:elevation rdf:type owl:DatatypeProperty ;
+           rdfs:domain :GeoCoordinates ;
+           rdfs:range xsd:integer .
+
+
+###  http://energy.siemens/monarch#fdmSiteId
+:fdmSiteId rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Site ;
+           rdfs:range xsd:integer .
+
+
+###  http://energy.siemens/monarch#frequency
+:frequency rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Plant ;
+           rdfs:range xsd:double .
+
+
+###  http://energy.siemens/monarch#kspSiteId
+:kspSiteId rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Site ;
+           rdfs:range xsd:integer .
+
+
+###  http://energy.siemens/monarch#label
+:label rdf:type owl:DatatypeProperty ;
+       rdfs:domain :Asset ;
+       rdfs:range xsd:string .
+
+
+###  http://energy.siemens/monarch#latitude
+:latitude rdf:type owl:DatatypeProperty ;
+          rdfs:domain :GeoCoordinates ;
+          rdfs:range xsd:float .
+
+
+###  http://energy.siemens/monarch#longitude
+:longitude rdf:type owl:DatatypeProperty ;
+           rdfs:domain :GeoCoordinates ;
+           rdfs:range xsd:float .
+
+
+###  http://energy.siemens/monarch#mosaicSiteId
+:mosaicSiteId rdf:type owl:DatatypeProperty ;
+              rdfs:range xsd:integer .
+
+
+###  http://energy.siemens/monarch#name
+:name rdf:type owl:DatatypeProperty ;
+      rdfs:domain :Country ;
+      rdfs:range xsd:string .
+
+
+###  http://energy.siemens/monarch#postalCode
+:postalCode rdf:type owl:DatatypeProperty ;
+            rdfs:domain :PostalAddress ;
+            rdfs:range xsd:string .
+
+
+###  http://energy.siemens/monarch#state
+:state rdf:type owl:DatatypeProperty ;
+       rdfs:domain :PostalAddress ;
+       rdfs:range xsd:string .
+
+
+###  http://energy.siemens/monarch#street
+:street rdf:type owl:DatatypeProperty ;
+        rdfs:domain :PostalAddress ;
+        rdfs:range xsd:string .
+
+
+###  http://energy.siemens/monarch#timestamp
+:timestamp rdf:type owl:DatatypeProperty ;
+           rdfs:domain :TransactionEvent ;
+           rdfs:range xsd:dateTimeStamp .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://energy.siemens/monarch#AbstractAsset
+:AbstractAsset rdf:type owl:Class ;
+               rdfs:subClassOf :Asset .
+
+
+###  http://energy.siemens/monarch#Asset
+:Asset rdf:type owl:Class .
+
+
+###  http://energy.siemens/monarch#CondensingSystem
+:CondensingSystem rdf:type owl:Class ;
+                  rdfs:subClassOf :Equipment .
+
+
+###  http://energy.siemens/monarch#Country
+:Country rdf:type owl:Class .
+
+
+###  http://energy.siemens/monarch#Created
+:Created rdf:type owl:Class ;
+         rdfs:subClassOf :Event .
+
+
+###  http://energy.siemens/monarch#Customer
+:Customer rdf:type owl:Class ;
+          rdfs:subClassOf :AbstractAsset .
+
+
+###  http://energy.siemens/monarch#Deleted
+:Deleted rdf:type owl:Class ;
+         rdfs:subClassOf :Event .
+
+
+###  http://energy.siemens/monarch#DutyType
+:DutyType rdf:type owl:Class .
+
+
+###  http://energy.siemens/monarch#Equipment
+:Equipment rdf:type owl:Class ;
+           rdfs:subClassOf :PhysicalAsset .
+
+
+###  http://energy.siemens/monarch#Event
+:Event rdf:type owl:Class .
+
+
+###  http://energy.siemens/monarch#Fuel
+:Fuel rdf:type owl:Class .
+
+
+###  http://energy.siemens/monarch#GasTurbine
+:GasTurbine rdf:type owl:Class ;
+            rdfs:subClassOf :Equipment .
+
+
+###  http://energy.siemens/monarch#Generator
+:Generator rdf:type owl:Class ;
+           rdfs:subClassOf :Equipment .
+
+
+###  http://energy.siemens/monarch#GeoCoordinates
+:GeoCoordinates rdf:type owl:Class ;
+                rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                  owl:onProperty :latitude ;
+                                  owl:someValuesFrom xsd:string
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :longitude ;
+                                  owl:someValuesFrom xsd:string
+                                ] .
+
+
+###  http://energy.siemens/monarch#GeoQuality
+:GeoQuality rdf:type owl:Class .
+
+
+###  http://energy.siemens/monarch#OwningSystem
+:OwningSystem rdf:type owl:Class .
+
+
+###  http://energy.siemens/monarch#PhysicalAsset
+:PhysicalAsset rdf:type owl:Class ;
+               rdfs:subClassOf :Asset .
+
+
+###  http://energy.siemens/monarch#Plant
+:Plant rdf:type owl:Class ;
+       rdfs:subClassOf :PhysicalAsset .
+
+
+###  http://energy.siemens/monarch#PlantConfiguration
+:PlantConfiguration rdf:type owl:Class .
+
+
+###  http://energy.siemens/monarch#PostalAddress
+:PostalAddress rdf:type owl:Class .
+
+
+###  http://energy.siemens/monarch#Region
+:Region rdf:type owl:Class .
+
+
+###  http://energy.siemens/monarch#Site
+:Site rdf:type owl:Class ;
+      rdfs:subClassOf :PhysicalAsset .
+
+
+###  http://energy.siemens/monarch#SteamTurbine
+:SteamTurbine rdf:type owl:Class ;
+              rdfs:subClassOf :Equipment .
+
+
+###  http://energy.siemens/monarch#TransactionEvent
+:TransactionEvent rdf:type owl:Class .
+
+
+###  http://energy.siemens/monarch#Unit
+:Unit rdf:type owl:Class ;
+      rdfs:subClassOf :PhysicalAsset .
+
+
+###  http://energy.siemens/monarch#UnitStatus
+:UnitStatus rdf:type owl:Class .
+
+
+###  http://energy.siemens/monarch#Updated
+:Updated rdf:type owl:Class ;
+         rdfs:subClassOf :Event .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://energy.siemens/monarch#ASIA
+:ASIA rdf:type owl:NamedIndividual ,
+               :Region .
+
+
+###  http://energy.siemens/monarch#Base
+:Base rdf:type owl:NamedIndividual ,
+               :DutyType .
+
+
+###  http://energy.siemens/monarch#Decommissioned
+:Decommissioned rdf:type owl:NamedIndividual ,
+                         :UnitStatus .
+
+
+###  http://energy.siemens/monarch#GB
+:GB rdf:type owl:NamedIndividual ,
+             :Country ;
+    :countryCode "GB"^^xsd:string ;
+    :name "United Kingdom"^^xsd:string .
+
+
+###  http://energy.siemens/monarch#Intermediate
+:Intermediate rdf:type owl:NamedIndividual ,
+                       :DutyType .
+
+
+###  http://energy.siemens/monarch#InternallyValidated
+:InternallyValidated rdf:type owl:NamedIndividual ,
+                              :GeoQuality .
+
+
+###  http://energy.siemens/monarch#NaturalGas
+:NaturalGas rdf:type owl:NamedIndividual ,
+                     :Fuel .
+
+
+###  http://energy.siemens/monarch#OilDistillate
+:OilDistillate rdf:type owl:NamedIndividual ,
+                        :Fuel .
+
+
+###  http://energy.siemens/monarch#Operating
+:Operating rdf:type owl:NamedIndividual ,
+                    :UnitStatus .
+
+
+###  http://energy.siemens/monarch#PH
+:PH rdf:type owl:NamedIndividual ,
+             :Country ;
+    :countryCode "PH"^^xsd:string ;
+    :name "Philippines"^^xsd:string .
+
+
+###  http://energy.siemens/monarch#Peaker
+:Peaker rdf:type owl:NamedIndividual ,
+                 :DutyType .
+
+
+###  http://energy.siemens/monarch#REU
+:REU rdf:type owl:NamedIndividual ,
+              :Region .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
