@@ -227,6 +227,11 @@
                rdfs:subClassOf :Asset .
 
 
+###  http://energy.siemens/monarch#Algorithm
+:Algorithm rdf:type owl:Class ;
+           rdfs:subClassOf :TechnicalAsset .
+
+
 ###  http://energy.siemens/monarch#Asset
 :Asset rdf:type owl:Class .
 
@@ -253,6 +258,11 @@
 ###  http://energy.siemens/monarch#Deleted
 :Deleted rdf:type owl:Class ;
          rdfs:subClassOf :Event .
+
+
+###  http://energy.siemens/monarch#Document
+:Document rdf:type owl:Class ;
+          rdfs:subClassOf :TechnicalAsset .
 
 
 ###  http://energy.siemens/monarch#DutyType
@@ -324,6 +334,15 @@
 :Region rdf:type owl:Class .
 
 
+###  http://energy.siemens/monarch#Rule
+:Rule rdf:type owl:Class ;
+      rdfs:subClassOf :Service .
+
+
+###  http://energy.siemens/monarch#Service
+:Service rdf:type owl:Class .
+
+
 ###  http://energy.siemens/monarch#Site
 :Site rdf:type owl:Class ;
       rdfs:subClassOf :PhysicalAsset .
@@ -332,6 +351,16 @@
 ###  http://energy.siemens/monarch#SteamTurbine
 :SteamTurbine rdf:type owl:Class ;
               rdfs:subClassOf :Equipment .
+
+
+###  http://energy.siemens/monarch#System
+:System rdf:type owl:Class ;
+        rdfs:subClassOf :AbstractAsset .
+
+
+###  http://energy.siemens/monarch#TechnicalAsset
+:TechnicalAsset rdf:type owl:Class ;
+                rdfs:subClassOf :Asset .
 
 
 ###  http://energy.siemens/monarch#TransactionEvent
@@ -350,6 +379,10 @@
 ###  http://energy.siemens/monarch#Updated
 :Updated rdf:type owl:Class ;
          rdfs:subClassOf :Event .
+
+
+###  http://energy.siemens/monarch#User
+:User rdf:type owl:Class .
 
 
 #################################################################
